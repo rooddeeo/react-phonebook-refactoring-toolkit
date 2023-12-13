@@ -1,15 +1,12 @@
 import ContactList from './ContactList/ContactList.jsx';
-import ContactForm from './ContactForm/ContactForm.jsx';
-import Filter from './Filter/Filter.jsx';
+import { Provider } from 'react-redux';
+import { store } from 'store/store.js';
 
 const App = () => {
   return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
+    <Provider store={store}>
       <ContactList />
-    </>
+    </Provider>
   );
 };
 

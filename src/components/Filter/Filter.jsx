@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './Filter.module.css';
-import ContactList from 'components/ContactList/ContactList';
+import { useDispatch } from 'react-redux';
+import { filterContactAction } from 'store/contacts/contactsSlice';
 
-const Filter = ({ communications }) => {
+const Filter = () => {
   const [filter, setFilter] = useState('');
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(filterContactAction(filter));
+  }, [filter, dispatch]);
+  console.log(filter);
   const changeFilter = event => {
+    const dataFilter = event.target.value;
+    dispatch(filterContactAction(dataFilter));
     setFilter(event.target.value);
   };
-  const lowerCase = filter.toLowerCase();
-  const visibleСommunications = communications.filter(contact =>
-    contact.name.toLowerCase().includes(lowerCase)
-  );
-  console.log(communications);
+
   return (
     <div>
       <input
@@ -25,7 +30,6 @@ const Filter = ({ communications }) => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-      {/* <ContactList communications={visibleCommunications} /> */}
     </div>
   );
 };
