@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import css from './ContactForm.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContactAction } from 'store/contacts/contactsSlice';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
+  const { contacts } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -24,8 +24,15 @@ const ContactForm = () => {
     }
   };
 
-  const addContact = contacts => {
-    dispatch(addContactAction(contacts));
+  const addContact = addNewContact => {
+    const isExist = contacts.find(
+      contact => contact.name.toLowerCase() === addNewContact.name.toLowerCase()
+    );
+    if (isExist) {
+      alert(`${addNewContact.name} is already in contacts.`);
+      return;
+    }
+    dispatch(addContactAction(addNewContact));
   };
 
   return (
@@ -42,8 +49,6 @@ const ContactForm = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-      </div>
-      <div className={css.contactBlock}>
         <label className={css.contactFormLable}>Number</label>
         <input
           className={css.contactInputForm}
@@ -55,10 +60,10 @@ const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
+        <button className={css.contactBtn} type="submit">
+          Add Contact
+        </button>
       </div>
-      <button className={css.contactBtn} type="submit">
-        Add Contact
-      </button>
     </form>
   );
 };

@@ -3,15 +3,20 @@ import { Provider } from 'react-redux';
 import { store } from 'store/store.js';
 import ContactForm from './ContactForm/ContactForm.jsx';
 import Filter from './Filter/Filter.jsx';
+import css from './App.module.css';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
+      <div className={css.container}>
+        <div className={css.content}>
+          <h1 className={css.title}>Phonebook</h1>
+          <ContactForm />
+          <h2 className={css.subTitle}>Search for contact</h2>
+          <Filter />
+          <ContactList />
+        </div>
+      </div>
     </Provider>
   );
 };

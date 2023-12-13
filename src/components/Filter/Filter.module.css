@@ -1,4 +1,13 @@
-.inputFilter{
+.inputFilter {
+  color: #fff;
+  width: 200px;
   height: 20px;
   border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid rgb(57, 182, 231);
+  margin-bottom: 15px;
+}
+
+.inputFilter::placeholder {
+  color: #fff;
 }

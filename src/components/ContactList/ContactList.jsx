@@ -9,12 +9,11 @@ const ContactList = () => {
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(lowerCase)
   );
-  console.log(visibleContacts);
 
   return (
     <>
       <ul className={css.contactList}>
-        {contacts.map(contact => (
+        {visibleContacts.map(contact => (
           <Contacts key={contact.id} contact={contact} />
         ))}
       </ul>
