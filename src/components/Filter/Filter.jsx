@@ -4,19 +4,19 @@ import { useDispatch } from 'react-redux';
 import { filterContactAction } from 'store/contacts/contactsSlice';
 
 const Filter = () => {
-  const [filter, setFilter] = useState('');
+  const [value, setValue] = useState('');
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(filterContactAction(filter));
-  }, [filter, dispatch]);
-  console.log(filter);
+    dispatch(filterContactAction(value));
+  }, [value, dispatch]);
+
   const changeFilter = event => {
-    const dataFilter = event.target.value;
-    dispatch(filterContactAction(dataFilter));
-    setFilter(event.target.value);
+    const dataValue = event.target.value;
+    setValue(dataValue);
   };
+  console.log('value', value);
 
   return (
     <div>
@@ -24,7 +24,7 @@ const Filter = () => {
         className={css.inputFilter}
         type="text"
         name="name"
-        value={filter}
+        value={value}
         onChange={changeFilter}
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"

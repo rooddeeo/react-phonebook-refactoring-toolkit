@@ -6,12 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import Filter from 'components/Filter/Filter.jsx';
 
 const ContactList = () => {
-  const { contacts } = useSelector(state => state.contacts);
+  const { contacts, filter } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const addContact = contacts => {
     dispatch(addContactAction(contacts));
   };
+
+  const lowerCase = filter.toLowerCase();
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(lowerCase)
+  );
+  console.log(visibleContacts);
+
   return (
     <>
       <h1>Phonebook</h1>
