@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import css from './ContactForm.module.css';
+import { useDispatch } from 'react-redux';
+import { addContactAction } from 'store/contacts/contactsSlice';
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -18,6 +22,10 @@ const ContactForm = ({ addContact }) => {
     } else if (name === 'number') {
       setNumber(value);
     }
+  };
+
+  const addContact = contacts => {
+    dispatch(addContactAction(contacts));
   };
 
   return (
