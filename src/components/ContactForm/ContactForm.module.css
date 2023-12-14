@@ -20,6 +20,10 @@
   border: 1px solid rgb(57, 182, 231);
 }
 
+.contactInputForm:focus {
+  border-color: 1px solid rgb(57, 182, 231);
+}
+
 .contactBtn {
   font-size: 18px;
   padding: 5px;

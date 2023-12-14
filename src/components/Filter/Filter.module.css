@@ -11,3 +11,7 @@
 .inputFilter::placeholder {
   color: #fff;
 }
+
+.inputFilter:focus {
+  border-color: rgb(57, 182, 231);
+}
